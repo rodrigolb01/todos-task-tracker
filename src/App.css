@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.Item-Container {
+  background-color: #808ba1;
+  color: rgb(0, 0, 0);
+}

@@ -1,23 +1,106 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Header from "./components/Header";
+import Item from "./components/Item";
+import { useState, useEffect } from "react";
 
 function App() {
+  const [items, setItems] = useState([]);
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
+
+  const getTodos = async () => {
+    const todos = await fetchData();
+    setItems(todos);
+  };
+
+  const fetchData = async () => {
+    const data = (await fetch("http://localhost:5000/api/items")).json();
+    return data;
+  };
+
+  const addItem = async () => {
+    try {
+      await fetch("http://localhost:5000/api/items", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          date: date,
+          description: description,
+        }),
+      }).then((res) => console.log(res.json()));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateItem = async (id) => {
+    try {
+      await fetch(`http://localhost:5000/api/items/${id}`, {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          date: date,
+          description: description,
+        }),
+      }).then((res) => console.log(res.json()));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const deleteItem = async (id) => {
+    console.log(id);
+    await fetch(`http://localhost:5000/api/items/${id}`, { method: "DELETE" });
+
+    getTodos();
+  };
+
+  useEffect(() => {
+    getTodos();
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="form">
+        <div>
+          <h3>Date</h3>
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          ></input>
+        </div>
+        <div>
+          <h3>Description</h3>
+          <input
+            value={description}
+            onChange={(e) => {
+              setDescription(e.target.value);
+            }}
+          ></input>
+        </div>
+        <button onClick={addItem}>Add</button>
+      </div>
+      <Header title={"Task Tracker"}></Header>
+      {items.map((i) => {
+        return (
+          <div key={i._id}>
+            <Item
+              id={i._id}
+              date={i.date}
+              description={i.description}
+              onDelete={deleteItem}
+              onUpdate={updateItem}
+            ></Item>
+          </div>
+        );
+      })}
     </div>
   );
 }
