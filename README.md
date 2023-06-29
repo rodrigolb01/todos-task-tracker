@@ -1,7 +1,11 @@
-# Setup
+# Setup 
+
 *1 - sign up for a mongodb account
+
 *2 - create a cluster
+
 *3 copy your cluster url
+
 *4 paste the url in the keys.js file
 
 # Getting Started with Create React App
