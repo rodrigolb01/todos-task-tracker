@@ -1,3 +1,9 @@
+# Setup
+*1 - sign up for a mongodb account
+*2 - create a cluster
+*3 copy your cluster url
+*4 paste the url in the keys.js file
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
