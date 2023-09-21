@@ -1,4 +1,4 @@
-# Big Game Survey 
+# TODOS Task Tracker
 [![NPM](https://img.shields.io/npm/l/react)](https://github.com/rodrigolb01/todos-task-tracker/blob/main/LICENSE) 
 
 # Sobre o projeto
