@@ -12,6 +12,7 @@
     "json-server": "latest",
     "mongodb": "^5.6.0",
     "mongoose": "^7.3.1",
+    "nodemon": "^3.0.1",
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",

@@ -27,7 +27,7 @@ router.put("/:id", urlencodedParser, (req, res) => {
   const id = req.params.id;
 
   const target = Item.findById(id).catch((err) => {
-    console.log("User not found. Error " + err);
+    console.log("Resource not found. Error " + err);
   });
 
   const updated = {
