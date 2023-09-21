@@ -3,7 +3,7 @@
 
 # Sobre o projeto
 
-Aplicação de posts em que cada post possúi uma data e uma descrição.
+Aplicação de to-dos em que cada todo possúi uma data e uma descrição.
 
 # Tecnologias utilizadas
 - nodejs
