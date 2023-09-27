@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const url = require("./config/keys.js").MONGODB_CONNECTION_STRING;
+const url = require("../config/keys").MONGODB_CONNECTION_STRING;
 const items = require("./routes/api/items.js");
 const users = require("./routes/api/users.js");
 

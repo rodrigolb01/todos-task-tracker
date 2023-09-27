@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FaTimes, FaEdit } from "react-icons/fa";
-import "../App.css";
 
 const today = new Date();
 

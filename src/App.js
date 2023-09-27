@@ -1,107 +1,28 @@
-import "./App.css";
-import Header from "./components/Header";
-import Item from "./components/Item";
-import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from './components/Header';
+import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
+import Items from "./components/Items";
+import Dashboard from "./components/Dashboard";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
-  const [items, setItems] = useState([]);
-  const [description, setDescription] = useState("");
-  const [date, setDate] = useState("");
-
-  const getTodos = async () => {
-    const todos = await fetchData();
-    setItems(todos);
-  };
-
-  const fetchData = async () => {
-    const data = (await fetch("http://localhost:5000/api/items")).json();
-    return data;
-  };
-
-  const addItem = async () => {
-    try {
-      await fetch("http://localhost:5000/api/items", {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          date: date,
-          description: description,
-        }),
-      }).then((res) => console.log(res.json()));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const updateItem = async (id) => {
-    try {
-      await fetch(`http://localhost:5000/api/items/${id}`, {
-        method: "PUT",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          date: date,
-          description: description,
-        }),
-      }).then((res) => console.log(res.json()));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const deleteItem = async (id) => {
-    console.log(id);
-    await fetch(`http://localhost:5000/api/items/${id}`, { method: "DELETE" });
-
-    getTodos();
-  };
-
-  useEffect(() => {
-    getTodos();
-  });
-
   return (
-    <div className="container">
-      <div className="form">
-        <div>
-          <h3>Date</h3>
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-          ></input>
+    <>
+      <Router>
+        <div className="container">
+        <Header/>
+          <Routes>
+            <Route path="/" element={ <Dashboard/> } />
+            <Route path="/signin" element={ <SignIn/> } />
+            <Route path="/signup" element={ <SignUp/> } />
+            <Route path="/items" element={ <Items/> } />
+          </Routes>
         </div>
-        <div>
-          <h3>Description</h3>
-          <input
-            value={description}
-            onChange={(e) => {
-              setDescription(e.target.value);
-            }}
-          ></input>
-        </div>
-        <button onClick={addItem}>Add</button>
-      </div>
-      <Header title={"Task Tracker"}></Header>
-      {items.map((i) => {
-        return (
-          <div key={i._id}>
-            <Item
-              id={i._id}
-              date={i.date}
-              description={i.description}
-              onDelete={deleteItem}
-              onUpdate={updateItem}
-            ></Item>
-          </div>
-        );
-      })}
-    </div>
+      </Router>
+      <ToastContainer/>
+    </>
   );
 }
 

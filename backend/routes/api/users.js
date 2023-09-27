@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler')
 const User = require('../../models/User');
-const secret = require("../../config/keys").JWT_SECRET;
+const secret = require("../../../config/keys").JWT_SECRET;
 const { protect } = require('../../middleware/authMiddleware')
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
