@@ -8,6 +8,9 @@ Aplicação de to-dos em que cada todo possúi uma data e uma descrição.
 # Tecnologias utilizadas
 - nodejs
 - express
+- reactjs
+- redux
+- axios
 - mongodb
 
 # Como executar o projeto
