@@ -12,7 +12,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 router.use(express.json());
 
 // @desc register a user
-router.post('/signup', asyncHandler(async(req, res) => {
+router.post('/signup', asyncHandler( async (req, res) => {
     const { email, password } = req.body;
 
     if(!email || !password)
@@ -58,7 +58,7 @@ router.post('/signup', asyncHandler(async(req, res) => {
 }))
 
 // @desc authenticate a user
-router.post('/signin', asyncHandler(async(req, res) => {
+router.post('/signin', asyncHandler( async (req, res) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({email});
@@ -79,13 +79,8 @@ router.post('/signin', asyncHandler(async(req, res) => {
 }))
 
 // @desc get authenticated user
-router.get('/account', protect, asyncHandler(async(req, res) => {
-    const {_id, email} = await User.findById(req.user.id);
-
-    res.status(200).json({
-        id: _id,
-        email
-    })
+router.get('/account', protect, asyncHandler( async (req, res) => {
+    res.status(200).json(req.user)
 }))
 
 

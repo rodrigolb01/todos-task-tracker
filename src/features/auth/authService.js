@@ -1,8 +1,8 @@
-import axios from "axios"
+import axios from "axios";
+const API_URL = "http://localhost:5000/api/users/";
 
 const register = async (userData) => {
-    const API_URL = "http://localhost:5000/api/users/signup";
-    const response = await axios.post(API_URL, userData);
+    const response = await axios.post(API_URL + "signup", userData);
 
     if(response.data)
     {
@@ -17,8 +17,7 @@ const logout = () => {
 }
 
 const login = async (userData) => {
-    const API_URL = "http://localhost:5000/api/users/signin";
-    const response = await axios.post(API_URL, userData);
+    const response = await axios.post(API_URL + "signin", userData);
 
     if(response.data)
     {

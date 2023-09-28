@@ -14,10 +14,9 @@ function App() {
         <div className="container">
         <Header/>
           <Routes>
-            <Route path="/" element={ <Dashboard/> } />
             <Route path="/signin" element={ <SignIn/> } />
             <Route path="/signup" element={ <SignUp/> } />
-            <Route path="/items" element={ <Items/> } />
+            <Route path="/" element={ <Items/> } />
           </Routes>
         </div>
       </Router>

@@ -32,7 +32,7 @@ export const register = createAsyncThunk(
 
 export const logout = createAsyncThunk(
     "auth/logout",
-    async () => { await authService.logout() }
+    async () => authService.logout() 
 )
 
 export const login = createAsyncThunk(

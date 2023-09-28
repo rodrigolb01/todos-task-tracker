@@ -2,12 +2,22 @@ import React from 'react';
 import Header from './Header';
 import Item from './Item';
 import { useState, useEffect } from "react";
-
+import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 const Items = () => {
     const [items, setItems] = useState([]);
     const [description, setDescription] = useState("");
     const [date, setDate] = useState("");
+
+    const { user } = useSelector((state) => state.auth)
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/signin");
+        }
+    }, [user, navigate])
 
     const getTodos = async () => {
         const todos = await fetchData();
@@ -15,7 +25,12 @@ const Items = () => {
     };
 
     const fetchData = async () => {
-        const data = (await fetch("http://localhost:5000/api/items")).json();
+        const data = (await fetch("http://localhost:5000/api/items",
+            {
+                headers: {
+                    "Authorization": user ? "Bearer " + user.token : ""
+                }
+            })).json();
         return data;
     };
 
@@ -26,6 +41,7 @@ const Items = () => {
                 mode: "cors",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": user ? "Bearer " + user.token : ""
                 },
                 body: JSON.stringify({
                     date: date,
@@ -44,6 +60,7 @@ const Items = () => {
                 mode: "cors",
                 headers: {
                     "Content-Type": "application/json",
+                    "Authorization": user ? "Bearer " + user.token : ""
                 },
                 body: JSON.stringify({
                     date: date,
@@ -57,13 +74,20 @@ const Items = () => {
 
     const deleteItem = async (id) => {
         console.log(id);
-        await fetch(`http://localhost:5000/api/items/${id}`, { method: "DELETE" });
+        await fetch(`http://localhost:5000/api/items/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Authorization": user ? "Bearer " + user.token : ""
+            }
+        });
 
         getTodos();
     };
 
     useEffect(() => {
-        getTodos();
+        if (user) {
+            getTodos();
+        }
     });
 
     return (
