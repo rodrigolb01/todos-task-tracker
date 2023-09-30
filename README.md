@@ -3,7 +3,7 @@
 
 # Sobre o projeto
 
-Aplicação de to-dos em que cada todo possúi uma data e uma descrição.
+Aplicação de lembretes/anotações em que cada nota possúi uma data e uma descrição.
 
 # Tecnologias utilizadas
 - nodejs
@@ -40,11 +40,9 @@ npm install
 # baixar as dependências (para yarn)
 yarn install 
 
-# executar o back end
-npm run server
-
-#executar o front end
+# executar 
 npm start
+
 ```
 
 # Autor
