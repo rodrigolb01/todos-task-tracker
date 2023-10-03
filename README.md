@@ -12,6 +12,8 @@ Aplicação de lembretes/anotações em que cada nota possúi uma data e uma des
 - redux
 - axios
 - mongodb
+- google oauth
+- nodemailer
 
 # Como executar o projeto
 
@@ -44,6 +46,12 @@ yarn install
 npm start
 
 ```
+
+(OPCIONAL - função de redefinir senha do usuário)
+
+- Para usar a função de redefinir senha do botão forgot password é necessário uma conta cloud com credenciais de OAuth2 e um email de host que será usado para enviar o link para a página de redefinição de senha.
+
+- Passo a passo de como como configurar o nodemailer: https://www.youtube.com/watch?v=18qA61bpfUs
 
 # Autor
 
