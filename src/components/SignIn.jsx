@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { login, reset } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 import Spinner from "./Spinner";
 
 const SignIn = () => {
@@ -55,7 +56,6 @@ const SignIn = () => {
           <FaUser>Sign in</FaUser>
         </h1>
       </section>
-
       <section>
         <form onSubmit={submit}>
           <div className="form-group" >
@@ -79,6 +79,9 @@ const SignIn = () => {
             placeholder="Enter your password" 
             onChange={(e) => setPassword(e.target.value)}>
             </input>
+          </div>
+          <div className="form-group">
+            <Link to="/forgotpassword">Forgot Password</Link>
           </div>
           <div className="form-group">
             <button type="submit" className="btn btn-block">Login</button>

@@ -6,15 +6,18 @@ const today = new Date();
 
 const Item = ({ id, date, description, onDelete, onUpdate }) => {
   return (
-    <div className="Item-Container">
-      <h3>{date}</h3>
+    <div className="goal">
+      <h4>{date}</h4>
       <br></br>
       <h3>{description}</h3>
       <FaTimes
         style={{ color: "#aa405a" }}
         onClick={() => onDelete(id)}
-      ></FaTimes>
-      <FaEdit style={{ color: "blue" }} onClick={() => onUpdate(id)}></FaEdit>
+      /> Delete
+      <FaEdit
+        style={{ color: "blue" }}
+        onClick={() => onUpdate(id)}
+      /> Edit
     </div>
   );
 };

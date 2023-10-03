@@ -62,7 +62,6 @@ const SignUp = () => {
           <FaUser>Sign up</FaUser>
         </h1>
       </section>
-
       <section>
         <form onSubmit={submit}>
           <div className="form-group" >

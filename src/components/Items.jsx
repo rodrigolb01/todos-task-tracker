@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from './Header';
 import Item from './Item';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
@@ -84,6 +83,10 @@ const Items = () => {
         getTodos();
     };
 
+    const formatDate = (date) => {
+        return date.slice(0,4) + " " + date.slice(5,7) + " " + date.slice(8,10)
+    }
+
     useEffect(() => {
         if (user) {
             getTodos();
@@ -93,7 +96,7 @@ const Items = () => {
     return (
         <div className="container">
             <div className="form">
-                <div>
+                <div className='form-group'>
                     <h3>Date</h3>
                     <input
                         type="date"
@@ -101,7 +104,7 @@ const Items = () => {
                         onChange={(e) => setDate(e.target.value)}
                     ></input>
                 </div>
-                <div>
+                <div className='form-group'>
                     <h3>Description</h3>
                     <input
                         value={description}
@@ -117,7 +120,7 @@ const Items = () => {
                     <div key={i._id}>
                         <Item
                             id={i._id}
-                            date={i.date}
+                            date={formatDate(i.date)}
                             description={i.description}
                             onDelete={deleteItem}
                             onUpdate={updateItem}
