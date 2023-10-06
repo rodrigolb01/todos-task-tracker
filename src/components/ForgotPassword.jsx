@@ -22,7 +22,8 @@ const ForgotPassword = () => {
         }
 
         if (isSuccess) {
-            navigate('/signin')
+            alert("We have sent a reset password link to " + email + ". Check your email.")
+            navigate('/signin');
         }
 
         dispatch(reset());
@@ -42,10 +43,6 @@ const ForgotPassword = () => {
 
     if (isLoading) {
         return <Spinner />
-    }
-
-    if (isSuccess) {
-        alert("We have sent a reset password link to " + email + ". Check your email.");
     }
 
     return (

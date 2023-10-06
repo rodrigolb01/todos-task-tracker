@@ -92,7 +92,7 @@ router.get('/account', protect, asyncHandler(async (req, res) => {
     res.status(200).json(req.user)
 }))
 
-// @desc send a reset password email
+// @desc send a r9eset password email
 router.post('/forgotpassword', asyncHandler(async (req, res, next) => {
 
     const { email } = req.body

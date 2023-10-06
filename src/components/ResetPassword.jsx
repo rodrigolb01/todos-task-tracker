@@ -25,6 +25,7 @@ const ResetPassword = () => {
         }
 
         if (isSuccess) {
+            alert("password reseted. You can now log in")
             navigate('/signin')
         }
 

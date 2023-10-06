@@ -7,7 +7,7 @@ const initialState = {
     user: user ? user : null,
     isError: false,
     isSuccess: false,
-    isLoadng: false,
+    isLoading: false,
     message: ""
 }
 
@@ -101,22 +101,22 @@ export const authSlice = createSlice(
             reset: (state) => {
                 state.isError = false
                 state.isSuccess = false
-                state.isLoadng = false
+                state.isLoading = false
                 state.message = ""
             }
         },
         extraReducers: (builder) => {
             builder
                 .addCase(register.pending, (state) => {
-                    state.isLoadng = true
+                    state.isLoading = true
                 })
                 .addCase(register.fulfilled, (state, action) => {
-                    state.isLoadng = false
+                    state.isLoading = false
                     state.isSuccess = true
                     state.user = action.payload
                 })
                 .addCase(register.rejected, (state, action) => {
-                    state.isLoadng = false
+                    state.isLoading = false
                     state.isError = true
                     state.message = action.payload
                     state.user = null
@@ -125,40 +125,40 @@ export const authSlice = createSlice(
                     state.user = null
                 })
                 .addCase(login.pending, (state) => {
-                    state.isLoadng = true
+                    state.isLoading = true
                 })
                 .addCase(login.fulfilled, (state, action) => {
-                    state.isLoadng = false
+                    state.isLoading = false
                     state.isSuccess = true
                     state.user = action.payload
                 })
                 .addCase(login.rejected, (state, action) => {
-                    state.isLoadng = false
+                    state.isLoading = false
                     state.isError = true
                     state.message = action.payload
                     state.user = null
                 })
                 .addCase(forgotPassword.pending, (state) => {
-                    state.isLoadng = true
+                    state.isLoading = true
                 })
                 .addCase(forgotPassword.fulfilled, (state) => {
-                    state.isLoadng = false
+                    state.isLoading = false
                     state.isSuccess = true
                 })
                 .addCase(forgotPassword.rejected, (state, action) => {
-                    state.isLoadng = false
+                    state.isLoading = false
                     state.isError = true
                     state.message = action.payload
                 })
                 .addCase(resetPassword.pending, (state) => {
-                    state.isLoadng = true
+                    state.isLoading = true
                 })
                 .addCase(resetPassword.fulfilled, (state) => {
-                    state.isLoadng = false
+                    state.isLoading = false
                     state.isSuccess = true
                 })
                 .addCase(resetPassword.rejected, (state, action) => {
-                    state.isLoadng = false
+                    state.isLoading = false
                     state.isError = true
                     state.message = action.payload
                 })
