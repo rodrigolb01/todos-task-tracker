@@ -84,7 +84,70 @@ const Items = () => {
     };
 
     const formatDate = (date) => {
-        return date.slice(0,4) + "/" + date.slice(5,7) + "/" + date.slice(8,10)
+        let formated = ""
+        let abbreviation = ""
+        let year = date.slice(0, 4);
+        let month = date.slice(5, 7);
+        let day = date.slice(8, 10);
+
+        //remove leading zeroes
+        if(Number(day) < 10)
+        {
+            day = day.slice(1);
+        }
+
+        //convert to name abbreviation
+        switch (month) {
+            case ("01"):
+                abbreviation = "Jan";
+                break;
+            case ("02"):
+                abbreviation = "Feb";
+                break;
+            case ("03"):
+                abbreviation = "Mar";
+                break;
+            case ("04"):
+                abbreviation = "Apr";
+                break;
+            case ("05"):
+                abbreviation = "May";
+                break;
+            case ("06"):
+                abbreviation = "Jun";
+                break;
+            case ("07"):
+                abbreviation = "Jul";
+                break;
+            case ("08"):
+                abbreviation = "Aug";
+                break;
+            case ("09"):
+                abbreviation = "Sep";
+                break;
+            case ("10"):
+                abbreviation = "Oct";
+            case ("11"):
+                abbreviation = "Nov";
+                break;
+            case ("12"):
+                abbreviation = "Dec";
+                break;
+        }
+
+        const currentYear = new Date().getFullYear();
+
+        if(Number(year) < Number(currentYear))
+        {
+            formated = day + "/" + month + "/" + year
+        }
+        else
+        {
+            formated = abbreviation + " " + day;
+        }
+
+
+        return formated
     }
 
     useEffect(() => {

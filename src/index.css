@@ -86,20 +86,30 @@ h3 {
   color: #828282;
 }
 
-.goals {
+.todos {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
 
-.goal {
-  background-color: #f4f4f4;
+.todo-header {
+  display: grid;
+  margin-left: 90%;
+}
+
+.todo-footer {
+  display: grid;
+  margin-left: 90%;
+}
+
+.todo {
+  background-color: #fff4ba;
   margin: 10px 0;
   padding: 20px 0 10px;
   position: relative;
 }
 
-.goal .close {
+.todo .close {
   position: absolute;
   top: 10px;
   right: 15px;
