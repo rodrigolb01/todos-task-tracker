@@ -28,12 +28,8 @@ export const register = createAsyncThunk(
                 error.toString()
             return thunkAPI.rejectWithValue(message)
         }
-    });
-
-export const logout = createAsyncThunk(
-    "auth/logout",
-    async () => authService.logout()
-)
+    }
+);
 
 export const login = createAsyncThunk(
     "auth/login",
@@ -52,7 +48,12 @@ export const login = createAsyncThunk(
             return thunkAPI.rejectWithValue(message)
         }
     }
-)
+);
+
+export const logout = createAsyncThunk(
+    "auth/logout",
+    async () => authService.logout()
+);
 
 export const forgotPassword = createAsyncThunk(
     "auth/forgotpassword",
