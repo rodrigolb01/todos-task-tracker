@@ -32,11 +32,10 @@ A full-stack application for managing tasks and reminders, built with Node.js, E
 
 3. **Setup the `.env` file:**
 
-   Create a `.env` file inside the `backend/` directory with the following content:
+   Create a `.env` file inside the root directory with the following content:
 
    ```
    MONGO_URI=your_mongodb_connection_string
-   PORT=5000
    NODE_ENV=development
    JWT_SECRET=your_jwt_secret
    ```
