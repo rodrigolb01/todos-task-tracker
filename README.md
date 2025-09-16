@@ -1,60 +1,57 @@
 # TODOS Task Tracker
-[![NPM](https://img.shields.io/npm/l/react)](https://github.com/rodrigolb01/todos-task-tracker/blob/main/LICENSE) 
 
-# Sobre o projeto
+A full-stack application for managing tasks and reminders, built with Node.js, Express, React, Redux, and MongoDB.
 
-Aplicação de lembretes/anotações em que cada nota possúi uma data e uma descrição.
+## Features
 
-# Tecnologias utilizadas
-- nodejs
-- express
-- reactjs
-- redux
-- axios
-- mongodb
-- google oauth
-- nodemailer
+- User authentication (register, login, logout)
+- Create, update, and delete goals/tasks
+- Password reset via email
+- Responsive UI
 
-# Como executar o projeto
+## Getting Started
 
-## Back end
-Pré-requisitos: 
-- nodejs
-- npm ou yarn
-- um cluster mongodb
+### Prerequisites
 
-```bash
-# clonar repositório
-git clone https://github.com/rodrigolb01/todos-task-tracker
-```
+- Node.js (v14 or higher)
+- npm or yarn
+- MongoDB cluster (local or cloud)
 
-- criar um cluster mongodb. Será necessário o nome de usuário e senha para acessar o banco de dados.
+### Installation
 
-https://www.mongodb.com/basics/clusters/mongodb-cluster-setup
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/yourusername/todos-task-tracker.git
+   cd todos-task-tracker
+   ```
 
-- Após criado o cluster, copiar usuário e senha e substituir na string de conexão do arquivo config/keys.js
+2. **Install dependencies:**
+   ```sh
+   npm install
+   ```
 
-```bash
+3. **Setup the `.env` file:**
 
-# baixar as dependências (para npm)
-npm install
+   Create a `.env` file inside the root directory with the following content:
 
-# baixar as dependências (para yarn)
-yarn install 
+   ```
+   MONGO_URI=your_mongodb_connection_string
+   NODE_ENV=development
+   JWT_SECRET=your_jwt_secret
+   ```
 
-# executar 
-npm start
+   - Replace `your_mongodb_connection_string` with your MongoDB URI.
+   - Replace `your_jwt_secret` with a strong secret key for JWT signing.
 
-```
+   If you want to enable password reset via email, you may also need to add email service credentials (see the code and documentation for details).
 
-(OPCIONAL - função de redefinir senha do usuário)
+4. **Start the application:**
+   ```sh
+   npm start
+   ```
 
-- Para usar a função de redefinir senha do botão forgot password é necessário uma conta cloud com credenciais de OAuth2 e um email de host que será usado para enviar o link para a página de redefinição de senha.
+   This will start both the backend server and the React frontend.
 
-- Passo a passo de como como configurar o nodemailer: https://www.youtube.com/watch?v=18qA61bpfUs
+## License
 
-# Autor
-
-Rodrigo Linhares Barroso
-
-https://www.linkedin.com/in/rodrigo-linhares-barroso-6271671a4/
+This project is licensed under the MIT License.
