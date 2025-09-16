@@ -35,12 +35,12 @@ const Header = () => {
             (
               <>
                 <li>
-                  <Link to="/signin">
+                  <Link to="/login">
                     <FaSignInAlt /> Sign in
                   </Link>
                 </li>
                 <li>
-                  <Link to="/signup">
+                  <Link to="/register">
                     <FaUser /> Sign up
                   </Link>
                 </li>

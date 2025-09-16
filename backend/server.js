@@ -1,43 +1,49 @@
 const path = require('path');
 const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const url = require("../config/keys").MONGODB_CONNECTION_STRING;
-const items = require("./routes/api/items.js");
-const users = require("./routes/api/users.js");
-const settings = require ('../config/keys');
-const { aggregate } = require('./models/User');
+const colors = require("colors");
+const dotenv = require("dotenv");
+const cors = require('cors');
+const { errorHandler } = require("./middleware/errorMiddleware.js");
+const connectDB = require("./config/db.js");
+const port = process.env.PORT || 5000;
 
-const server = express();
-server.use(express.json());
-server.listen(5000, () => {
-  console.log("server started in port 5000");
-});
-server.use(cors());
+const goals = require("./routes/goalRoutes.js");
+const users = require("./routes/userRoutes.js");
 
-mongoose
-  .connect(url)
-  .then(console.log("MongoDB connected..."))
-  .catch((err) => console.log(err));
+connectDB();
+
+const app = express();
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+}));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 //use routes
-server.use("/api/items", items);
-server.use("/api/users", users);
+app.use("/goals", goals);
+app.use("/users", users);
 
 //serve frontend
-if(settings.NODE_ENV === "PRODUCTION")
+if(process.env.NODE_ENV === "production")
 {
-  server.use(express.static(path.join(__dirname, "../build")));
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-  server.get("*", (req, res) => {
+  app.get("*", (req, res) => 
     res.sendFile(
-      path.resolve(__dirname, "../", "build", "index.html")
+      path.resolve(__dirname, "../", "frontend", "build", "index.html")
     )
-  });
-}
-else
-{
-  server.get("/", (req, res) => {
+  );
+} else {
+  app.get("/", (req, res) => {
     res.send('App is currently not set to production');
   })
 }
+
+app.use(errorHandler);
+
+app.listen(port, () => {
+  console.log(`server started in port ${port}`);
+});

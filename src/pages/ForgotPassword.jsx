@@ -23,7 +23,7 @@ const ForgotPassword = () => {
 
         if (isSuccess) {
             alert("We have sent a reset password link to " + email + ". Check your email.")
-            navigate('/signin');
+            navigate('/login');
         }
 
         dispatch(reset());
