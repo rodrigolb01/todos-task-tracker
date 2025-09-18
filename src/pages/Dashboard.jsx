@@ -16,21 +16,25 @@ const Dashboard = () => {
 
 
   useEffect(() => {
-    if(!isError)
+    if (user) // && user.token
     {
-      console.log(message);
-    }
+        if(!isError)
+      {
+        console.log(message);
+      }
 
-    if(!user)
-    {
-      navigate("/login")
-    }
+      if(!user)
+      {
+        navigate("/login")
+      }
 
-    dispatch(getGoals());
+      dispatch(getGoals());
 
-    return () => {
-      dispatch(reset());
+      return () => {
+        dispatch(reset());
+      }
     }
+    navigate("/login");
 
   }, [user, navigate, isError, message, dispatch]);
 

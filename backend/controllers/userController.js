@@ -9,13 +9,11 @@ const User = require('../models/userModel')
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body
 
-  console.log("validating input");
   if (!name || !email || !password) {
     res.status(400)
     throw new Error('Please add all fields')
   }
 
-  console.log("chekcing if user exists");
   // Check if user exists
   const userExists = await User.findOne({ email })
 
@@ -24,12 +22,10 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new Error('User already exists')
   }
 
-  console.log("hash password");
   // Hash password
   const salt = await bcrypt.genSalt(10)
   const hashedPassword = await bcrypt.hash(password, salt)
 
-  console.log("creating user");
   // Create user
   const user = await User.create({
     name,
@@ -37,7 +33,6 @@ const registerUser = asyncHandler(async (req, res) => {
     password: hashedPassword,
   })
 
-  console.log("generating token");
   if (user) {
     res.status(201).json({
       _id: user.id,
