@@ -7,15 +7,15 @@ const protect = asyncHandler(async (req, res, next) => {
 
     if (req.headers.authorization &&
         req.headers.authorization.startsWith('Bearer')) {
-        try {
-            // // Get token from header
-            // token = req.headers.authorization.split(' ')[1];
+        try { //comment this to disable token (will break setGoal as there will be no way of getting the goal user)
+            // Get token from header
+            token = req.headers.authorization.split(' ')[1];
 
-            // // Verify token
-            // const decoded = jwt.verify(token, process);
+            // Verify token
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-            // // Get user from the token
-            // req.user = await User.findById(decoded.id).select("-password");
+            // Get user from the token
+            req.user = await User.findById(decoded.id).select("-password");
             next();
         }
         catch (error) {
@@ -25,10 +25,10 @@ const protect = asyncHandler(async (req, res, next) => {
         }
     }
 
-    if(!token)
+    if(!token) //comment this to disable token (will break setGoal as there will be no way of getting the goal user)
     {
-        // res.status(401);
-        // throw new Error("Not authorized, no token");
+        res.status(401);
+        throw new Error("Not authorized, no token");
     }
 })
 

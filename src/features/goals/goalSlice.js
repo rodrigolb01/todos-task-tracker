@@ -70,7 +70,7 @@ export const goalSlice = createSlice({
   name: 'goal',
   initialState,
   reducers: {
-    reset: (state) => initialState,
+    reset: () => initialState,
   },
   extraReducers: (builder) => {
     builder
@@ -80,7 +80,7 @@ export const goalSlice = createSlice({
       .addCase(createGoal.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.goals.push(action.payload)
+        state.goals.push(action.payload);
       })
       .addCase(createGoal.rejected, (state, action) => {
         state.isLoading = false
@@ -93,7 +93,7 @@ export const goalSlice = createSlice({
       .addCase(getGoals.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.goals = action.payload
+        state.goals = Array.isArray(action.payload) ? action.payload : []
       })
       .addCase(getGoals.rejected, (state, action) => {
         state.isLoading = false
