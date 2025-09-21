@@ -37,7 +37,7 @@ A full-stack application for managing tasks and reminders, built with Node.js, E
    ```
    MONGO_URI=your_mongodb_connection_string
    NODE_ENV=development
-   JWT_SECRET=your_jwt_secret
+   JWT_SECRET=your_jwt_secret (eg. abc123)
    ```
 
    - Replace `your_mongodb_connection_string` with your MongoDB URI.
