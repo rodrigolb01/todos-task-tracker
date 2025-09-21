@@ -6,7 +6,7 @@ import { FaUser } from 'react-icons/fa'
 import { register, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
 
-function Register() {
+function SignUp() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -54,7 +54,6 @@ function Register() {
         password,
       }
 
-      console.log("registering user", userData);
       dispatch(register(userData))
     }
   }
@@ -67,9 +66,9 @@ function Register() {
     <>
       <section className='heading'>
         <h1>
-          <FaUser /> Register
+          <FaUser /> Sign Up
         </h1>
-        <p>Please create an account</p>
+        <p>Create your account</p>
       </section>
 
       <section className='form'>
@@ -129,4 +128,4 @@ function Register() {
   )
 }
 
-export default Register
+export default SignUp

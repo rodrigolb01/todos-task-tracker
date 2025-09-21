@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 
-const Login = () => {
+const SignIn = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -103,4 +103,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default SignIn
