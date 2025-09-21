@@ -51,6 +51,7 @@ export const getGoals = createAsyncThunk(
 export const deleteGoal = createAsyncThunk(
   'goals/delete',
   async (id, thunkAPI) => {
+    console.log("slice, deleting goal id:", id);
     try {
       const token = thunkAPI.getState().auth.user.token
       return await goalService.deleteGoal(id, token)

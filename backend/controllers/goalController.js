@@ -22,7 +22,7 @@ const setGoal = asyncHandler(async (req, res) => {
 
   const goal = await Goal.create({
     text: req.body.text,
-    user: req.user.id, // no user
+    user: req.user.id, 
   })
   res.status(200).json(goal)
 })
@@ -80,7 +80,14 @@ const deleteGoal = asyncHandler(async (req, res) => {
     throw new Error('User not authorized')
   }
 
-  await goal.remove()
+  console.log("backend goal:" , goal);
+ try {
+     await Goal.deleteOne({ _id: req.params.id })
+ } catch (error) {
+  res.status(500)
+  res.json({ message: "Error deleting goal", error: error.message })
+  return;
+ }
 
   res.status(200).json({ id: req.params.id })
 })
