@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import goalService from './goalService'
+import { logout } from '../auth/authSlice'
 
 const initialState = {
   goals: [],
@@ -17,6 +18,10 @@ export const createGoal = createAsyncThunk(
       const token = thunkAPI.getState().auth.user.token
       return await goalService.createGoal(goalData, token)
     } catch (error) {
+      if (error.response && error.response.status === 401) {
+        thunkAPI.dispatch(logout())
+        return thunkAPI.rejectWithValue('Session expired. Please login again.')
+      }
       const message =
         (error.response &&
           error.response.data &&
@@ -36,6 +41,10 @@ export const getGoals = createAsyncThunk(
       const token = thunkAPI.getState().auth.user.token
       return await goalService.getGoals(token)
     } catch (error) {
+      if (error.response && error.response.status === 401) {
+        thunkAPI.dispatch(logout())
+        return thunkAPI.rejectWithValue('Session expired. Please login again.')
+      }
       const message =
         (error.response &&
           error.response.data &&
@@ -56,6 +65,10 @@ export const deleteGoal = createAsyncThunk(
       const token = thunkAPI.getState().auth.user.token
       return await goalService.deleteGoal(id, token)
     } catch (error) {
+      if (error.response && error.response.status === 401) {
+        thunkAPI.dispatch(logout())
+        return thunkAPI.rejectWithValue('Session expired. Please login again.')
+      }
       const message =
         (error.response &&
           error.response.data &&

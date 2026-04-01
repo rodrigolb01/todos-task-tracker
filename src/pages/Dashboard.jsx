@@ -16,27 +16,28 @@ const Dashboard = () => {
 
 
   useEffect(() => {
-    if (user) // && user.token
-    {
-        if(!isError)
-      {
-        console.log(message);
-      }
-
-      if(!user)
-      {
-        navigate("/login")
-      }
-
-      dispatch(getGoals());
-
-      return () => {
-        dispatch(reset());
-      }
+    if (!user) {
+      navigate('/login')
+      return
     }
-    navigate("/login");
 
-  }, [user, navigate, isError, message, dispatch]);
+    if (isError && message.toLowerCase().includes('session')) {
+      dispatch(reset())
+      navigate('/login')
+      return
+    }
+
+    if (isError) {
+      // you can show a toast there instead of console
+      console.warn('Goals API error:', message)
+    }
+
+    dispatch(getGoals())
+
+    return () => {
+      dispatch(reset())
+    }
+  }, [user, navigate, isError, message, dispatch])
 
   if(isLoading)
   {
