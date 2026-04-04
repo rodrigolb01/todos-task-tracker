@@ -12,8 +12,9 @@ connectDB();
 
 const app = express();
 
+const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: CLIENT_URL,
   credentials: true,
 }));
 
@@ -27,11 +28,11 @@ app.use("/users", users);
 //serve frontend
 if(process.env.NODE_ENV === "production")
 {
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
+  app.use(express.static(path.join(__dirname, "../build")));
 
   app.get("*", (req, res) => 
     res.sendFile(
-      path.resolve(__dirname, "../", "frontend", "build", "index.html")
+      path.resolve(__dirname, "../build", "index.html")
     )
   );
 } else {
